@@ -1,0 +1,73 @@
+<app-home></app-home>
+
+
+<table class="table table-dark" >
+    <thead >
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Class</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Schoolname</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let student of students"  [class.selected]="student === selectedStudent" (click)="onSelect(student)">
+      <tr>
+        <td>{{student.id}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.class}}</td>
+        <td>{{student.subject}}</td>
+        <td>{{student.schoolname}}</td>
+      </tr>
+        </tbody>
+  </table>
+
+
+  <div class="container">
+    <label><b>Name</b></label>
+    <input 
+    [(ngModel)]="student.name" type="text" placeholder="Enter name" required>
+
+    <label><b>Class</b></label>
+    <input [(ngModel)]="student.class" type="text" placeholder="Enter class" required>
+
+    <label><b>Subject</b></label>
+    <input [(ngModel)]="student.subject" type="text" placeholder="Enter subject" required>
+
+    <label><b>SchoolName</b></label>
+    <input [(ngModel)]="student.schoolname" type="text" placeholder="Enter schoolname" required>
+
+    <button (click)="OnDetails()">Submit Details</button><br><br>
+
+    <input type="text" placeholder="enterid" [(ngModel)]="student.id" ><br>
+    <button (click)="removeStudent(student.id)">Remove Student</button> <br>
+  </div>
+
+  <!-- <div>
+    <ul class="student">
+     <li *ngFor="let student of students"  [class.selected]="student === selectedStudent" (click)="onSelect(student)" >
+    <span>{{student.id}}</span> |
+    <span>{{student.name}}</span> |
+    <span>{{student.class}}</span> |
+    <span>{{student.subject}}</span> |
+    <span>{{student.schoolname}}</span>
+  </li>
+  </ul>
+  </div> -->
+
+
+  <div>
+      <div *ngIf="selectedStudent">
+        <h2>{{selectedStudent.name | uppercase}}</h2>
+        <div><span>id: </span>{{selectedStudent.id}}</div>
+        <div>
+          <input type="text" placeholder="name"  [(ngModel)]="selectedStudent.name"><br> 
+          <input type="text" placeholder="class"  [(ngModel)]="selectedStudent.class"><br>
+          <input type="text" placeholder="subject"  [(ngModel)]="selectedStudent.subject"><br>
+          <input type="text" placeholder="schoolName"  [(ngModel)]="selectedStudent.schoolName"><br>
+        
+        </div>
+    
+      </div>
+    </div>
+
